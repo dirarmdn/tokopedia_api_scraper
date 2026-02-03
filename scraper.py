@@ -54,7 +54,6 @@ def scrape_data(param):
   
   data = []
   for i in range(0, len(rows)):
-    no = i
     product_name = rows[i]['name']
     price = rows[i]['price']['number']
     rate = rows[i]['rating']
@@ -62,7 +61,7 @@ def scrape_data(param):
     location = rows[i]['shop']['city']
     
     data.append(
-      (no, product_name, price, rate, shop, location)
+      (product_name, price, rate, shop, location)
     )
   return data
 
@@ -85,7 +84,9 @@ if __name__ == '__main__':
   random_id = uuid.uuid4().hex[:8]
   filename = f"res/tokped_data_{timestamp}_{random_id}.csv"
   
-  df = pd.DataFrame(all_data, columns=['No', 'Nama Produk', 'Harga', 'Rating', 'Toko', 'Lokasi'])
+  df = pd.DataFrame(all_data, columns=['Nama Produk', 'Harga', 'Rating', 'Toko', 'Lokasi'])
+  df.insert(0, 'No', range(1, len(all_data) + 1))
+  
   df.to_csv(filename, index=False)
   print(df)
   
