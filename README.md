@@ -6,7 +6,7 @@ To run this project, follow the steps below:
     ```
 2. **Install dependencies**:
     ```bash
-    pip install -r requirements.txt
+    pip install -r dependencies.txt
     ```
 3. **Run the project**:
     ```bash
